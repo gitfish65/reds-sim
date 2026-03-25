@@ -216,15 +216,3 @@ export function rollClaw(claw, defLevel, defBonus) {
 
   return claw1 + claw2 + claw3 + claw4;
 }
-
-export function rollHornClaw(claw, defLevel, defBonus) {
-  const maxHit = Math.floor(calcMeleeMaxHit(claw));
-
-  const minHit = Math.floor(maxHit / 2);
-  const claw1 = randInt(minHit, maxHit);
-  const claw2 = Math.floor(claw1 / 2);
-  const claw3 = Math.floor(claw2 / 2);
-  const claw4 = claw3 + 1;
-
-  return claw1 + claw2 + claw3 + claw4;
-}

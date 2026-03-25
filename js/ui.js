@@ -1,4 +1,5 @@
 import { runSim, runBatchSim } from "./simulation.js";
+import { renderBatchChart } from "./charts.js";
 
 function runSingle() {
   const trials = Number(document.getElementById("trials").value);
@@ -37,6 +38,7 @@ function runBatch() {
   }
 
   const results = runBatchSim(trials);
+  renderBatchChart(results);
 
   let output = "\tVerzik HP | Skip success rate\n";
   for (const { hp, probability } of results) {

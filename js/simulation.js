@@ -46,11 +46,11 @@ export function runSim(trials, hpPercentage) {
       successfulTrials++;
     }
 
-    console.log("Claw damage:", clawDamage);
-    console.log("Scythe damage:", scytheDamage);
-    console.log("Shadow damage:", shadowDamage);
-    console.log("Thrall damage:", thrallDamage);
-    console.log("Total damage:", totalDamage);
+    //console.log("Claw damage:", clawDamage);
+    //console.log("Scythe damage:", scytheDamage);
+    //console.log("Shadow damage:", shadowDamage);
+    //console.log("Thrall damage:", thrallDamage);
+    //console.log("Total damage:", totalDamage);
   }
 
   return successfulTrials / trials;
