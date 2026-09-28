@@ -1,6 +1,10 @@
-import { runSim, runBatchSim } from "./simulation.js";
+import { runSim, runBatchSim, STRATEGIES } from "./simulation.js";
 import { renderBatchChart } from "./charts.js";
 
+function getSelectedStrategy() {
+  const key = document.getElementById("strategy").value;
+  return STRATEGIES[key];
+}
 function runSingle() {
   const trials = Number(document.getElementById("trials").value);
   const hp = Number(document.getElementById("hp").value);
@@ -19,10 +23,11 @@ function runSingle() {
     return;
   }
 
-  const probability = runSim(trials, hp);
+  const strategy = getSelectedStrategy();
+  const probability = runSim(trials, hp, strategy.numScythes, strategy.numClaws, strategy.numShadows);
 
   outputEl.textContent =
-    `Success rate at ${(hp * 100).toFixed(0)}% HP: ${(probability * 100).toFixed(2)}%`;
+    `Success rate at ${(hp * 100).toFixed(0)}% HP (${strategy.name}): ${(probability * 100).toFixed(2)}%`;
 }
 
 function runBatch() {
@@ -37,10 +42,11 @@ function runBatch() {
     return;
   }
 
-  const results = runBatchSim(trials);
-  renderBatchChart(results);
+  const strategy = getSelectedStrategy();
+  const results = runBatchSim(trials, strategy.numScythes, strategy.numClaws, strategy.numShadows);
+  renderBatchChart(results, strategy.name);
 
-  let output = "\tVerzik HP | Skip success rate\n";
+  let output = `\tStrategy: ${strategy.name}\n\tVerzik HP | Skip success rate\n`;
   for (const { hp, probability } of results) {
     output += `\t${hp}%\t\t${(probability * 100).toFixed(2)}%\n`;
   }

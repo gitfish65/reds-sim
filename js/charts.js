@@ -1,6 +1,6 @@
 let batchChart = null;
 
-export function renderBatchChart(results) {
+export function renderBatchChart(results, strategyName) {
   const canvas = document.getElementById("batch-chart");
   const labels = results.map(result => `${result.hp}%`);
   const data = results.map(result => result.probability * 100);
@@ -15,6 +15,7 @@ export function renderBatchChart(results) {
   if (batchChart) {
     batchChart.data.labels = labels;
     batchChart.data.datasets[0].data = data;
+    batchChart.data.datasets[0].label = `${strategyName} – skip success rate (%)`;
     batchChart.update();
     return;
   }
@@ -25,7 +26,7 @@ export function renderBatchChart(results) {
       labels,
       datasets: [
         {
-          label: "Skip success rate (%)",
+          label: `${strategyName} – skip success rate (%)`,
           data,
           tension: 0.2
         }
