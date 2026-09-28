@@ -94,7 +94,7 @@ export function calcMagicAttackRoll(player) {
   const magicBoost = 13;
   const prayerBoost = 1.25;
 
-  const effectiveMageLevel = Math.floor((magicLvl + magicBoost + 9) * prayerBoost);
+  const effectiveMageLevel = Math.floor((magicLvl + magicBoost) * prayerBoost) + 9;
   const attackRoll = effectiveMageLevel * (player.magic_acc_bonus + 64);
 
   return attackRoll;
